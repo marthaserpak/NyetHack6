@@ -20,7 +20,7 @@ fun main() {
       }
       println(beverage)*/
 
-    /* Оператор ?:
+/*     Оператор ?: */
     var beverage = readLine()
     if (beverage != null) {
         beverage = beverage.capitalize()
@@ -29,5 +29,5 @@ fun main() {
                 "beverage was null!!")
     }
     val beverageServed: String = beverage ?: "Buttered Ale"
-    println(beverageServed)*/
+    println(beverageServed)
 }

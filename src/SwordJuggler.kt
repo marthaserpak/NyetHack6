@@ -21,8 +21,18 @@ fun main() {
 }
 
 fun proficiencyCheck(swordsJuggling: Int?) {
-    swordsJuggling ?: throw UnskilledSwordJugglerException()
+    /*swordsJuggling ?: throw UnskilledSwordJugglerException()*/
 
+    /*checkNotNull проверяет равенство swordsJuggling значению null после
+    определенной точки в коде. Если checkNotNull получит null
+    она возбудит IllegalStateException.*/
+   /* checkNotNull(swordsJuggling, {"Player cannot juggle swords!"})*/
+
+}
+
+fun juggleSwords(swordsJuggling: Int){
+    require(swordsJuggling >=3) {"Juggle at least 3 words to" +
+            " be exciting."}
 }
 
 /*UnskilledSwordJugglerException - это пользовательское исключение, которое

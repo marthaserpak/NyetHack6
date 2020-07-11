@@ -33,8 +33,8 @@ fun main() {
     val beverageServed: String = beverage ?: "Buttered Ale"
     println(beverageServed) */
 
-//    placeOrder("shandy, Dragon's Breath, 5.91")
-    placeOrder("elixir, Shirlie's Temple, 4.12")
+    placeOrder("shandy, Dragon's Breath,  5.91")
+//    placeOrder("elixir, Shirlie's Temple, 4.12")
 
 }
 
@@ -47,22 +47,32 @@ private fun placeOrder(menuData: String) {
     val message = "Adler buys a $name ($type) for $price."
     println(message)
 
-    val phrase = if (name == "Dragon's Breath") {
-        "Adler exclaims ${toDragonSpeak("Ah, delicious $name!")}"
+/*    val phrase = if (name == "DRAGON BREATH") {
+        "Adler exclaims ${toDragonSpeak("$name : IT'S GOT WHAT " +
+                " ADVANTURES CRAVE")}"
     } else {
         "Adler says: Thanks for the $name."
     }
-    println(phrase)
+    println(phrase)*/
+
+    val phrase = "DRAGON'S BREATH: IT'S GOT WHAT ADVENTURERS CRAVE!"
+    println("Adler says: ${toDragonSpeak(phrase)}")
 }
 
+
 private fun toDragonSpeak(phrase: String) =
-        phrase.replace(Regex("[aeiou]")) {
+        phrase.replace(Regex("[aeiouAEIOU]")) {
             when (it.value) {
                 "a" -> "4"
                 "e" -> "3"
                 "i" -> "1"
                 "o" -> "0"
                 "u" -> "|_|"
+                "A" ->"4"
+                "E" -> "3"
+                "I" -> "1"
+                "O" -> "0"
+                "U" -> "|_|"
                 else -> it.value
             }
         }

@@ -30,7 +30,7 @@ fun proficiencyCheck(swordsJuggling: Int?) {
 
 }
 
-fun juggleSwords(swordsJuggling: Int){
+fun juggleSwords(swordsJuggling: Int) {
     require(swordsJuggling >=3) {"Juggle at least 3 words to" +
             " be exciting."}
 }

@@ -1,3 +1,5 @@
+const val TAVERN_NAME = "Taernyl's Folly"
+
 fun main() {
     /* Оператор безопасного вызова  "let"
     var beverage = readLine()?.let {
@@ -20,7 +22,7 @@ fun main() {
       }
       println(beverage)*/
 
-/*     Оператор ?: */
+    /*     Оператор ?:
     var beverage = readLine()
     if (beverage != null) {
         beverage = beverage.capitalize()
@@ -29,5 +31,20 @@ fun main() {
                 "beverage was null!!")
     }
     val beverageServed: String = beverage ?: "Buttered Ale"
-    println(beverageServed)
+    println(beverageServed) */
+
+    placeOrder("shandy, Dragon's Breath, 5.91")
+}
+
+private fun placeOrder(menuData: String) {
+    val indexOfApostrophe = TAVERN_NAME.indexOf('\'')
+    val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
+    println("Adler speaks with $tavernMaster about their order. ")
+
+    val data = menuData.split(',')
+    val type = data[0]
+    val name = data[1]
+    val price = data[2]
+    val message = "Adler buys a $name ($type) for $price."
+    println(message)
 }

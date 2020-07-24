@@ -3,7 +3,8 @@ import kotlin.math.roundToInt
 const val TAVERN_NAME = "Taernyl's Folly"
 var playerGold = 10
 var playerSilver = 10
-val patronList: List<String> = listOf("Eli", "Mordoc", "Sophie")
+val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
+val readOnlyPatronList = patronList.toList()
 
 fun main() {
     /* Оператор безопасного вызова  "let"
@@ -36,7 +37,12 @@ fun main() {
     val beverageServed: String = beverage ?: "Buttered Ale"
     println(beverageServed) */
 
-    if(patronList.contains("Eli")) {
+    patronList.forEachIndexed {index, patron ->
+        println("Good evening, $patron - you're №${index + 1} in line.")
+        placeOrder(patron, "shandy, Dragon's Breath,  5.91")
+    }
+
+    /*if(patronList.contains("Eli")) {
         println("The tavern master says: Eli's in the back playing cards.")
     } else {
         println("The tavern master says: Eli isn't here.")
@@ -46,21 +52,20 @@ fun main() {
         println("The tavern master says: Yea, they're seated by the stew kettle.")
     } else {
         println("The tavern master says: No, they departed hour ago.")
-    }
+    }*/
 
-    placeOrder("shandy, Dragon's Breath,  5.91")
 }
 
-private fun placeOrder(menuData: String) {
+private fun placeOrder(patronName: String, menuData: String) {
     val indexOfApostrophe = TAVERN_NAME.indexOf('\'')
     val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
-    println("Adler speaks with $tavernMaster about their order. ")
+    println("$patronName speaks with $tavernMaster about their order. ")
 
     val (type, name, price) = menuData.split(',')
-    val message = "Adler buys a $name ($type) for $price."
+    val message = "$patronName buys a $name ($type) for $price."
     println(message)
 
-    performPurchase(price.toDouble())
+    //performPurchase(price.toDouble())
 
     /*    val phrase = if (name == "DRAGON BREATH") {
         "Adler exclaims ${toDragonSpeak("$name : IT'S GOT WHAT " +
@@ -69,8 +74,13 @@ private fun placeOrder(menuData: String) {
         "Adler says: Thanks for the $name."
     }
     println(phrase)*/
-    val phrase = "DRAGON'S BREATH: IT'S GOT WHAT ADVENTURERS CRAVE!"
-    println("Adler says: ${toDragonSpeak(phrase)}")
+    val phrase = if (name == "Dragon's Breath") {
+        "$patronName exclaims: ${toDragonSpeak("Ah, delicious $name!")}"
+    } else {
+        "$patronName says: Thanks for the $name"
+    }
+    println(phrase)
+    println()
 }
 
 fun performPurchase(price: Double) {

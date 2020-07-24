@@ -52,6 +52,7 @@ private fun auraColor(healthPoints: Int): String {
         else -> "Green"
     }
 }
+
 //Player Status
 private fun printPlayerStatus(healthPoints: Int,
                               auraColor: String,

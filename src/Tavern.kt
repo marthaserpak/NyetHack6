@@ -1,4 +1,9 @@
+import kotlin.math.roundToInt
+
 const val TAVERN_NAME = "Taernyl's Folly"
+var playerGold = 10
+var playerSilver = 10
+val patronList: List<String> = listOf("Eli", "Mordoc", "Sophie")
 
 fun main() {
     /* Оператор безопасного вызова  "let"
@@ -12,7 +17,6 @@ fun main() {
 
     println(beverage)
 */
-
     /* Проверка на равенство null
       var beverage = readLine()
       if (beverage != null) {
@@ -21,7 +25,6 @@ fun main() {
           println("I can't  do that without crashing - beverage was null!")
       }
       println(beverage)*/
-
     /*     Оператор ?:
     var beverage = readLine()
     if (beverage != null) {
@@ -33,9 +36,19 @@ fun main() {
     val beverageServed: String = beverage ?: "Buttered Ale"
     println(beverageServed) */
 
-    placeOrder("shandy, Dragon's Breath,  5.91")
-//    placeOrder("elixir, Shirlie's Temple, 4.12")
+    if(patronList.contains("Eli")) {
+        println("The tavern master says: Eli's in the back playing cards.")
+    } else {
+        println("The tavern master says: Eli isn't here.")
+    }
 
+    if (patronList.containsAll(listOf("Mordoc", "Sophie"))) {
+        println("The tavern master says: Yea, they're seated by the stew kettle.")
+    } else {
+        println("The tavern master says: No, they departed hour ago.")
+    }
+
+    placeOrder("shandy, Dragon's Breath,  5.91")
 }
 
 private fun placeOrder(menuData: String) {
@@ -43,22 +56,51 @@ private fun placeOrder(menuData: String) {
     val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
     println("Adler speaks with $tavernMaster about their order. ")
 
-    val(type, name, price) = menuData.split(',')
+    val (type, name, price) = menuData.split(',')
     val message = "Adler buys a $name ($type) for $price."
     println(message)
 
-/*    val phrase = if (name == "DRAGON BREATH") {
+    performPurchase(price.toDouble())
+
+    /*    val phrase = if (name == "DRAGON BREATH") {
         "Adler exclaims ${toDragonSpeak("$name : IT'S GOT WHAT " +
                 " ADVANTURES CRAVE")}"
     } else {
         "Adler says: Thanks for the $name."
     }
     println(phrase)*/
-
     val phrase = "DRAGON'S BREATH: IT'S GOT WHAT ADVENTURERS CRAVE!"
     println("Adler says: ${toDragonSpeak(phrase)}")
 }
 
+fun performPurchase(price: Double) {
+    displayBalance()
+    val totalPurse = playerGold + (playerSilver / 100.0)
+    //val totalPurse = (playerDracoin * oneGoldCoin)
+    if (totalPurse >= 5.91) {
+        println("Total purse:  ${"%.2f".format(totalPurse)}")
+        println("Purchasing  item for $price")
+
+        val remainingBalance = totalPurse - price
+        println("Remaining balance: ${"%.2f".format(remainingBalance)}")
+
+        // playerDracoin = remainingBalance.toInt()
+
+        val remainingGold = remainingBalance.toInt()
+        val remainingSilver = (remainingBalance % 1 * 100).roundToInt()
+        playerGold = remainingGold
+        playerSilver = remainingSilver
+        displayBalance()
+    } else {
+        println("Adler haven't got enough  money.")
+    }
+    //val totalPurse = (playerDracoin * oneGoldCoin).toDouble()
+}
+
+fun displayBalance() {
+    println("Player's purse balance:  Gold: $playerGold, Silver: $playerSilver")
+    /*" Dracoin: $playerDracoin"*/
+}
 
 private fun toDragonSpeak(phrase: String) =
         phrase.replace(Regex("[aeiouAEIOU]")) {
@@ -68,7 +110,7 @@ private fun toDragonSpeak(phrase: String) =
                 "i" -> "1"
                 "o" -> "0"
                 "u" -> "|_|"
-                "A" ->"4"
+                "A" -> "4"
                 "E" -> "3"
                 "I" -> "1"
                 "O" -> "0"
@@ -76,4 +118,7 @@ private fun toDragonSpeak(phrase: String) =
                 else -> it.value
             }
         }
+
+
+
 

@@ -4,7 +4,7 @@ const val TAVERN_NAME = "Taernyl's Folly"
 var playerGold = 10
 var playerSilver = 10
 val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
-val readOnlyPatronList = patronList.toList()
+//val readOnlyPatronList = patronList.toList()
 
 fun main() {
     /* Оператор безопасного вызова  "let"
@@ -83,7 +83,7 @@ private fun placeOrder(patronName: String, menuData: String) {
     println()
 }
 
-fun performPurchase(price: Double) {
+/*fun performPurchase(price: Double) {
     displayBalance()
     val totalPurse = playerGold + (playerSilver / 100.0)
     //val totalPurse = (playerDracoin * oneGoldCoin)
@@ -105,12 +105,12 @@ fun performPurchase(price: Double) {
         println("Adler haven't got enough  money.")
     }
     //val totalPurse = (playerDracoin * oneGoldCoin).toDouble()
-}
+}*/
 
-fun displayBalance() {
+/*fun displayBalance() {
     println("Player's purse balance:  Gold: $playerGold, Silver: $playerSilver")
-    /*" Dracoin: $playerDracoin"*/
-}
+    *//*" Dracoin: $playerDracoin"
+}*/
 
 private fun toDragonSpeak(phrase: String) =
         phrase.replace(Regex("[aeiouAEIOU]")) {

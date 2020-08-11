@@ -1,3 +1,5 @@
+package game
+
 import java.lang.Exception
 import java.lang.IllegalStateException
 
@@ -21,12 +23,12 @@ fun main() {
 }
 
 fun proficiencyCheck(swordsJuggling: Int?) {
-    /*swordsJuggling ?: throw UnskilledSwordJugglerException()*/
+    /*swordsJuggling ?: throw com.nyethack.` `.UnskilledSwordJugglerException()*/
 
     /*checkNotNull проверяет равенство swordsJuggling значению null после
     определенной точки в коде. Если checkNotNull получит null
     она возбудит IllegalStateException.*/
-   /* checkNotNull(swordsJuggling, {"Player cannot juggle swords!"})*/
+   /* checkNotNull(swordsJuggling, {"game.Player cannot juggle swords!"})*/
 
 }
 
@@ -35,8 +37,8 @@ fun juggleSwords(swordsJuggling: Int) {
             " be exciting."}
 }
 
-/*UnskilledSwordJugglerException - это пользовательское исключение, которое
+/*com.nyethack.` `.UnskilledSwordJugglerException - это пользовательское исключение, которое
 работает так же как IllegalStateException, но с определенным сообщением.*/
 class UnskilledSwordJugglerException() :
-        IllegalStateException("Player cannot juggle swords")
+        IllegalStateException("game.Player cannot juggle swords")
 

@@ -1,11 +1,14 @@
-import kotlin.math.roundToInt
+package game
+
 import java.io.File
 
 const val TAVERN_NAME = "Taernyl's Folly"
 var playerGold = 10
 var playerSilver = 10
 val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
-//val readOnlyPatronList = patronList.toList()
+val menuList = File("src/data/menu.txt")
+        .readText()
+        .split("\n")
 
 fun main() {
     /* Оператор безопасного вызова  "let"
@@ -38,18 +41,22 @@ fun main() {
     val beverageServed: String = beverage ?: "Buttered Ale"
     println(beverageServed) */
 
-    patronList.forEachIndexed {index, patron ->
-        println("Good evening, $patron - you're №${index + 1} in line.")
-        placeOrder(patron, "shandy, Dragon's Breath,  5.91")
+    patronList.forEachIndexed { index, patron ->
+        println("Good evening, $patron - you're #${index + 1} in line.")
+        placeOrder(patron, menuList.shuffled().first())
     }
 
-    /*if(patronList.contains("Eli")) {
+    menuList.forEachIndexed { index, data ->
+        println("$index : $data")
+    }
+
+    /*if(com.nyethack.` `.getPatronList.contains("Eli")) {
         println("The tavern master says: Eli's in the back playing cards.")
     } else {
         println("The tavern master says: Eli isn't here.")
     }
 
-    if (patronList.containsAll(listOf("Mordoc", "Sophie"))) {
+    if (com.nyethack.` `.getPatronList.containsAll(listOf("Mordoc", "Sophie"))) {
         println("The tavern master says: Yea, they're seated by the stew kettle.")
     } else {
         println("The tavern master says: No, they departed hour ago.")
@@ -69,7 +76,7 @@ private fun placeOrder(patronName: String, menuData: String) {
     //performPurchase(price.toDouble())
 
     /*    val phrase = if (name == "DRAGON BREATH") {
-        "Adler exclaims ${toDragonSpeak("$name : IT'S GOT WHAT " +
+        "Adler exclaims ${com.nyethack.` `.toDragonSpeak("$name : IT'S GOT WHAT " +
                 " ADVANTURES CRAVE")}"
     } else {
         "Adler says: Thanks for the $name."
@@ -86,7 +93,7 @@ private fun placeOrder(patronName: String, menuData: String) {
 
 /*fun performPurchase(price: Double) {
     displayBalance()
-    val totalPurse = playerGold + (playerSilver / 100.0)
+    val totalPurse = com.nyethack.` `.getPlayerGold + (com.nyethack.` `.getPlayerSilver / 100.0)
     //val totalPurse = (playerDracoin * oneGoldCoin)
     if (totalPurse >= 5.91) {
         println("Total purse:  ${"%.2f".format(totalPurse)}")
@@ -99,8 +106,8 @@ private fun placeOrder(patronName: String, menuData: String) {
 
         val remainingGold = remainingBalance.toInt()
         val remainingSilver = (remainingBalance % 1 * 100).roundToInt()
-        playerGold = remainingGold
-        playerSilver = remainingSilver
+        com.nyethack.` `.getPlayerGold = remainingGold
+        com.nyethack.` `.getPlayerSilver = remainingSilver
         displayBalance()
     } else {
         println("Adler haven't got enough  money.")
@@ -109,8 +116,7 @@ private fun placeOrder(patronName: String, menuData: String) {
 }*/
 
 /*fun displayBalance() {
-    println("Player's purse balance:  Gold: $playerGold, Silver: $playerSilver")
-    *//*" Dracoin: $playerDracoin"
+    println("game.Player's purse balance:  Gold: $com.nyethack.` `.getPlayerGold, Silver: $com.nyethack.` `.getPlayerSilver")
 }*/
 
 private fun toDragonSpeak(phrase: String) =

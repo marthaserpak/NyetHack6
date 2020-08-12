@@ -2,7 +2,7 @@ package game
 
 fun main() {
 
-    val player = Player()
+    val player = Player("Phics")
 
     player.castFireball(2)
 

@@ -1,15 +1,22 @@
 package game
 
-class Player {
-    var name = "Adam"
+class Player(_name: String,
+             var healthPoints: Int,
+             val isBlessed: Boolean,
+             private val isImmortal: Boolean) {
+
+    var name = _name
         get() = field.capitalize()
         private set(value) {
             field = value.trim()
         }
 
-    val healthPoints = 100
-    val isBlessed = true
-    val isImmortal = false
+    constructor(name: String) : this(name,
+            healthPoints = 100,
+            isBlessed = true,
+            isImmortal = false) {
+        if (name.toLowerCase() == "kar") healthPoints = 40
+    }
 
     val race = "ali"
     val fraction = when (race) {
@@ -53,7 +60,7 @@ class Player {
 
     //castFireball
     fun castFireball(numFireballs: Int) {
-        val stupefyingResult = when(numFireballs) {
+        val stupefyingResult = when (numFireballs) {
             in 1..5 -> 20
             in 6..8 -> 30
             in 9..15 -> 50
@@ -61,7 +68,7 @@ class Player {
             else -> 100
         }
 
-        val condition =  when (stupefyingResult) {
+        val condition = when (stupefyingResult) {
             20 -> "Tipsy"
             30 -> "Sloshed"
             50 -> "Soused"
